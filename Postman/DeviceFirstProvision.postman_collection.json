@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "67c4f577-6a5d-45c8-8b88-1003e2b00174",
+		"name": "DeviceFirstProvision",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Device Template",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{IoTCApiKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"types\": [\r\n    \"DeviceModel\"\r\n  ],\r\n  \"displayName\": \"IoT Central Postman Sample\",\r\n  \"capabilityModel\": {\r\n    \"@id\": \"urn:iotcpnptest:postmansample:1\",\r\n    \"@type\": [\r\n      \"CapabilityModel\"\r\n    ],\r\n    \"implements\": [\r\n      {\r\n        \"@id\": \"urn:iotcpnptest:DeviceInfo:2\",\r\n        \"@type\": [\r\n          \"InterfaceInstance\"\r\n        ],\r\n        \"displayName\": \"Device information\",\r\n        \"name\": \"DeviceInfo\",\r\n        \"schema\": {\r\n          \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:1\",\r\n          \"@type\": [\r\n            \"Interface\"\r\n          ],\r\n          \"displayName\": \"Device information\",\r\n          \"contents\": [\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:manufacturer:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Company name of the device manufacturer. This could be the same as the name of the original equipment manufacturer (OEM). Ex. Contoso.\",\r\n              \"displayName\": \"Manufacturer\",\r\n              \"name\": \"manufacturer\",\r\n              \"schema\": \"string\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:model:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Device model name or ID. Ex. Surface Book 2.\",\r\n              \"displayName\": \"Device model\",\r\n              \"name\": \"model\",\r\n              \"schema\": \"string\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:swVersion:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Version of the software on your device. This could be the version of your firmware. Ex. 1.3.45\",\r\n              \"displayName\": \"Software version\",\r\n              \"name\": \"swVersion\",\r\n              \"schema\": \"string\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:osName:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Name of the operating system on the device. Ex. Windows 10 IoT Core.\",\r\n              \"displayName\": \"Operating system name\",\r\n              \"name\": \"osName\",\r\n              \"schema\": \"string\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:processorArchitecture:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Architecture of the processor on the device. Ex. x64 or ARM.\",\r\n              \"displayName\": \"Processor architecture\",\r\n              \"name\": \"processorArchitecture\",\r\n              \"schema\": \"string\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:processorManufacturer:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Name of the manufacturer of the processor on the device. Ex. Intel.\",\r\n              \"displayName\": \"Processor manufacturer\",\r\n              \"name\": \"processorManufacturer\",\r\n              \"schema\": \"string\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:totalStorage:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Total available storage on the device in kilobytes. Ex. 2048000 kilobytes.\",\r\n              \"displayName\": \"Total storage\",\r\n              \"name\": \"totalStorage\",\r\n              \"displayUnit\": \"kilobytes\",\r\n              \"schema\": \"long\"\r\n            },\r\n            {\r\n              \"@id\": \"urn:azureiot:DeviceManagement:DeviceInformation:totalMemory:1\",\r\n              \"@type\": [\r\n                \"Property\"\r\n              ],\r\n              \"comment\": \"Total available memory on the device in kilobytes. Ex. 256000 kilobytes.\",\r\n              \"displayName\": \"Total memory\",\r\n              \"name\": \"totalMemory\",\r\n              \"displayUnit\": \"kilobytes\",\r\n              \"schema\": \"long\"\r\n            }\r\n          ]\r\n        }\r\n      }\r\n    ],\r\n    \"displayname\": \"IoT PnP Device Template Postman Sample\",\r\n    \"contents\": [\r\n    ],\r\n    \"@context\": [\r\n      \"http://azureiot.com/v1/contexts/IoTModel.json\"\r\n    ]\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{IoTCAppUrl}}.azureiotcentral.com/api/preview/deviceTemplates/{{IoTCDeviceTemplateId}}",
+					"protocol": "https",
+					"host": [
+						"{{IoTCAppUrl}}",
+						"azureiotcentral",
+						"com"
+					],
+					"path": [
+						"api",
+						"preview",
+						"deviceTemplates",
+						"{{IoTCDeviceTemplateId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2. Device Create",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{IoTCApiKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"displayName\": \"Postman Test Device\",\r\n  \"simulated\": false,\r\n  \"approved\": true\r\n}"
+				},
+				"url": {
+					"raw": "https://{{IoTCAppUrl}}.azureiotcentral.com/api/preview/devices/{{IoTCDeviceId}}",
+					"protocol": "https",
+					"host": [
+						"{{IoTCAppUrl}}",
+						"azureiotcentral",
+						"com"
+					],
+					"path": [
+						"api",
+						"preview",
+						"devices",
+						"{{IoTCDeviceId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3. Device Attestation",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{IoTCApiKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"type\": \"X509Attestation\",\r\n  \"x509\": {\r\n    \"clientCertificates\": {\r\n      \"primary\": {\r\n        \"certificate\": \"\"\r\n      }\r\n    }\r\n  }\r\n}"
+				},
+				"url": {
+					"raw": "https://{{IoTCAppUrl}}.azureiotcentral.com/api/preview/devices/{{IoTCDeviceId}}/attestation",
+					"protocol": "https",
+					"host": [
+						"{{IoTCAppUrl}}",
+						"azureiotcentral",
+						"com"
+					],
+					"path": [
+						"api",
+						"preview",
+						"devices",
+						"{{IoTCDeviceId}}",
+						"attestation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Device Create with Device Template ID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"type": "text",
+						"value": "{{IoTCApiKey}}"
+					},
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"displayName\": \"Postman Test Device\",\r\n  \"instanceOf\": \"{{IoTCDeviceTemplateId}}\",\r\n  \"simulated\": false,\r\n  \"approved\": true\r\n}"
+				},
+				"url": {
+					"raw": "https://{{IoTCAppUrl}}.azureiotcentral.com/api/preview/devices/{{IoTCDeviceId}}",
+					"protocol": "https",
+					"host": [
+						"{{IoTCAppUrl}}",
+						"azureiotcentral",
+						"com"
+					],
+					"path": [
+						"api",
+						"preview",
+						"devices",
+						"{{IoTCDeviceId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Device Delete",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{IoTCApiKey}}",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://{{IoTCAppUrl}}.azureiotcentral.com/api/preview/devices/{{IoTCDeviceId}}",
+					"protocol": "https",
+					"host": [
+						"{{IoTCAppUrl}}",
+						"azureiotcentral",
+						"com"
+					],
+					"path": [
+						"api",
+						"preview",
+						"devices",
+						"{{IoTCDeviceId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
