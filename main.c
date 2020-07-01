@@ -28,20 +28,13 @@ typedef enum APP_DPS_REGISTRATION_STATUS_TAG
     APP_DPS_REGISTRATION_FAILED
 } APP_DPS_REGISTRATION_STATUS;
 
-const SECURE_DEVICE_TYPE secureDeviceTypeForProvisioning = SECURE_DEVICE_TYPE_SYMMETRIC_KEY;
-const IOTHUB_SECURITY_TYPE secureDeviceTypeForIotHub = IOTHUB_SECURITY_TYPE_SYMMETRIC_KEY;
+const SECURE_DEVICE_TYPE secureDeviceTypeForProvisioning = SECURE_DEVICE_TYPE_X509;
 
 // The DPS global device endpoint
 static const char *globalDpsEndpoint = "global.azure-devices-provisioning.net";
 
 // DPS ID scope
 static char *dpsIdScope;
-
-// DPS symmetric keys for authentication
-static char *sasKey;
-
-// Device Id
-static char *deviceId;
 
 // TODO: Fill in DIGITALTWIN_DEVICE_CAPABILITY_MODEL_INLINE_DATA if want to make deivce self-describing.
 #define DIGITALTWIN_DEVICE_CAPABILITY_MODEL_INLINE_DATA "{}"
@@ -112,11 +105,7 @@ static bool registerDevice(bool traceOn)
         return false;
     }
 
-    if (prov_dev_set_symmetric_key_info(deviceId, sasKey) != 0)
-    {
-        LogError("prov_dev_set_symmetric_key_info failed.");
-    }
-    else if (prov_dev_security_init(secureDeviceTypeForProvisioning) != 0)
+    if (prov_dev_security_init(secureDeviceTypeForProvisioning) != 0)
     {
         LogError("prov_dev_security_init failed");
     }
@@ -184,15 +173,7 @@ static void setup()
     if (registerDevice(false))
     {
         buff[0] = 0;
-        if (secureDeviceTypeForProvisioning == SECURE_DEVICE_TYPE_SYMMETRIC_KEY)
-        {
-            snprintf(buff, sizeof(buff),
-                     "HostName=%s;DeviceId=%s;SharedAccessKey=%s",
-                     dpsIotHubUri,
-                     dpsDeviceId,
-                     sasKey);
-        }
-        else if (secureDeviceTypeForProvisioning == SECURE_DEVICE_TYPE_X509)
+        if (secureDeviceTypeForProvisioning == SECURE_DEVICE_TYPE_X509)
         {
             snprintf(buff, sizeof(buff),
                      "HostName=%s;DeviceId=%s;UseProvisioning=true",
@@ -211,15 +192,13 @@ static void setup()
 // main entry point.
 int main(int argc, char *argv[])
 {
-    if (argc == 4)
+    if (argc == 2)
     {
-        deviceId = argv[1];
-        dpsIdScope = argv[2];
-        sasKey = argv[3];
+        dpsIdScope = argv[1];
     }
     else
     {
-        LogError("USAGE: DeviceFirstWithX509 [Device ID] [DPS ID Scope] [DPS symmetric key]");
+        LogError("USAGE: DeviceFirstWithX509 [DPS ID Scope]");
         return 1;
     }
 
