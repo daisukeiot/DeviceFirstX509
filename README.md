@@ -241,7 +241,6 @@ To use the Postman collection, please configure environment variables
 1. Add values  
     ![Postman-002](media/Postman-002.png)
 
-    
 | Variable             | Value                         | Notes                                                                                |
 |----------------------|-------------------------------|--------------------------------------------------------------------------------------|
 | IoTCDeviceTemplateId | Device Template ID            |                                                                                      |

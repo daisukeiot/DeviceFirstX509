@@ -42,7 +42,7 @@ static char *dpsIdScope;
 static const char *digitalTwinSample_CustomProvisioningData = "{"
                                                               "\"__iot:interfaces\":"
                                                               "{"
-                                                              "\"CapabilityModelId\": \"urn:seeedkk:ReButton:2\" ,"
+                                                              "\"CapabilityModelId\": \"urn:iotcpnptest:postmansample:1\" ,"
                                                               "\"CapabilityModel\": \"" DIGITALTWIN_DEVICE_CAPABILITY_MODEL_INLINE_DATA "\""
                                                               "}"
                                                               "}";
