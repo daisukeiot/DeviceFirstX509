@@ -102,6 +102,18 @@ Reference : <https://docs.microsoft.com/en-us/azure/iot-central/core/concepts-ge
 > [!NOTE] (as of 6/30/2020)  
 > It seems the device template must be added to IoT Central app for automatic association to work.  Without the device template, their first provisioning succeeds but the device is not assigned to the device template.  On the 2nd provisioning, the association is made.
 
+Please ensure you specify the correct Capability Model ID in main.c line #45
+
+```c
+static const char *digitalTwinSample_CustomProvisioningData = "{"
+                                                              "\"__iot:interfaces\":"
+                                                              "{"
+                                                              "\"CapabilityModelId\": \"urn:iotcpnptest:postmansample:1\" ,"
+                                                              "\"CapabilityModel\": \"" DIGITALTWIN_DEVICE_CAPABILITY_MODEL_INLINE_DATA "\""
+                                                              "}"
+                                                              "}";
+```
+
 ## Assigning certificates to device identity
 
 In order for a device to be authenticated using X.509, the certificate must be assigned to the device identity.  
