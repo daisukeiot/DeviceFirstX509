@@ -266,5 +266,81 @@ Run the app with :
 
 ```bash
 cd cmake
-./DevicefirstX509 <Scope ID>
+./DeviceFirstWithX509 <Scope ID>
+```
+
+After successful provisioning, the new devices should be assigned to the device template
+
+![IoTC-004](media/IoTC-004.png)
+
+Example output :
+
+```bash
+ ./DeviceFirstWithX509 0ne0010B795
+hsm_client_x509_init()
+File size 2057
+Certificate :
+-----BEGIN CERTIFICATE-----
+MIIFwzCCA6ugAwIBAgIBAjANBgkqhkiG9w0BAQsFADAqMSgwJgYDVQQDDB9BenVy
+  : <snip>
+PLcibK16lQTKuJoF7ge7Movh/LY0KwIz2sgFAcJrcDy0wapMVn15
+-----END CERTIFICATE-----
+
+Private Key :
+-----BEGIN RSA PRIVATE KEY-----
+MIIJKAIBAAKCAgEAzaVCQKL8kkhZAl76znDXWKigwSJDDlBgkuh9woX4/HJlOEEu
+  : <snip>
+1/99jVUWKshRdvz5VjhnlFMbt5j+Xydr3LgTdZ3KL9j1yQO7i7QAe5/ieOM=
+-----END RSA PRIVATE KEY-----
+
+hsm_client_x509_init()
+hsm_client_x509_interface()
+custom_hsm_create()
+custom_hsm_get_common_name() : PostmanDevice001
+custom_hsm_get_certificate()
+custom_hsm_get_key()
+Info: Provisioning callback indicates success.  iothubUri=iotc-97bbc0fc-d946-41b6-896a-ad9a740cd3b0.azure-devices.net, deviceId=PostmanDevice001
+Info: DPS successfully registered.  Continuing on to creation of IoTHub device client handle.
+custom_hsm_destroy()
+hsm_client_x509_interface()
+custom_hsm_create()
+custom_hsm_get_certificate()
+custom_hsm_get_key()
+Info: Successfully created DigitalTwin device with connectionString=<****>, deviceHandle=<0x562fe0e36f90>
+Info: DigitalTwin Interface : Changing interface state on interface DeviceInfo from DT_INTERFACE_STATE_INVALID to DT_INTERFACE_STATE_CREATED
+Info: DEVICEINFO_INTERFACE: Created DIGITALTWIN_INTERFACE_CLIENT_HANDLE successfully for interfaceId=<urn:azureiot:DeviceManagement:DeviceInformation:1>, interfaceInstanceName=<DeviceInfo>, handle=<0x562fe0e31370>
+Info: DigitalTwin Interface : Changing interface state on interface Battery from DT_INTERFACE_STATE_INVALID to DT_INTERFACE_STATE_CREATED
+Info: BATTERY_INTERFACE: Created DIGITALTWIN_INTERFACE_CLIENT_HANDLE successfully for interfaceId=<urn:seeedkk:Interface:Battery:1>, interfaceInstanceName=<Battery>, handle=<0x562fe0e31ff0>
+Info: DigitalTwin Interface : Changing interface state on interface PushButton from DT_INTERFACE_STATE_INVALID to DT_INTERFACE_STATE_CREATED
+Info: PUSHBUTTON_INTERFACE: Created DIGITALTWIN_INTERFACE_CLIENT_HANDLE successfully for interfaceId=<urn:seeedkk:Interface:PushButton2:1>, interfaceInstanceName=<PushButton>, handle=<0x562fe0e0ad50>
+Info: DigitalTwin Interface : Changing interface state on interface DeviceInfo from DT_INTERFACE_STATE_CREATED to DT_INTERFACE_STATE_BOUND_TO_CLIENT_HANDLE
+Info: DigitalTwin Interface : Changing interface state on interface Battery from DT_INTERFACE_STATE_CREATED to DT_INTERFACE_STATE_BOUND_TO_CLIENT_HANDLE
+Info: DigitalTwin Interface : Changing interface state on interface PushButton from DT_INTERFACE_STATE_CREATED to DT_INTERFACE_STATE_BOUND_TO_CLIENT_HANDLE
+Info: Successfully queued registration message
+custom_hsm_get_certificate()
+custom_hsm_get_key()
+Info: DigitalTwin Client Core: Processing register DigitalTwin interfaces callback.  confirmationResult=IOTHUB_CLIENT_CONFIRMATION_OK
+Info: DigitalTwin Client Core: Interfaces successfully registered.  Register for device method and twin callbacks if needed
+Info: Sending reported state for sdkInfo={"$iotin:urn_azureiot_Client_SDKInformation":  { "language":{ "value":"C"},"version":{ "value":"0.9.0"},"vendor":{ "value":"Microsoft"}}}
+Info: DigitalTwin Interface : Changing interface state on interface DeviceInfo from DT_INTERFACE_STATE_BOUND_TO_CLIENT_HANDLE to DT_INTERFACE_STATE_REGISTERED
+Info: DeviceInfoInterface_InterfaceRegisteredCallback with status=<DIGITALTWIN_CLIENT_RESULT_INVALID>, userContext=<0x562fe0498478>
+Info: DEVICEINFO_INTERFACE: Interface successfully registered.
+Info: DigitalTwin Interface : Changing interface state on interface Battery from DT_INTERFACE_STATE_BOUND_TO_CLIENT_HANDLE to DT_INTERFACE_STATE_REGISTERED
+Info: BatteryInterface_InterfaceRegisteredCallback with status=<DIGITALTWIN_CLIENT_RESULT_INVALID>, userContext=<0x562fe0498480>
+Info: BATTERY_INTERFACE: Interface successfully registered.
+Info: DigitalTwin Interface : Changing interface state on interface PushButton from DT_INTERFACE_STATE_BOUND_TO_CLIENT_HANDLE to DT_INTERFACE_STATE_REGISTERED
+Info: PushButtonInterface_InterfaceRegisteredCallback with status=<DIGITALTWIN_CLIENT_RESULT_INVALID>, userContext=<0x562fe0498490>
+Info: PUSHBUTTON_INTERFACE: Interface successfully registered.
+Info: Interface registration callback invoked, interfaces have been successfully registered
+Info: DigitalTwin interfaces successfully registered
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for manufacturer
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for model
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for swVersion
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for osName
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for processorArchitecture
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for processorManufacturer
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for totalStorage
+Info: DEVICEINFO_INTERFACE: Queued async report read only property for totalMemory
+Info: DEVICE_INFO: Queuing of all properties to be reported has succeeded
+Info: PnP enabled, running...
 ```
